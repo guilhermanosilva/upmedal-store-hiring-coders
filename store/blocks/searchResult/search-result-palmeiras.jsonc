@@ -1,0 +1,26 @@
+// Arquivo similar ao search-result.jsonc
+{
+  "flex-layout.row#home-product-palmeiras": {
+    "children": ["search-result-layout.customQuery#palmeiras"],
+    "props": {
+      "blockClass": "container-products-home"
+    }
+  },
+
+  "search-result-layout.customQuery#palmeiras": {
+    "props": {
+      "querySchema": {
+        "orderByField": "OrderByReleaseDateDESC",
+        "hideUnavailableItems": true,
+        "maxItemsPerPage": 8,
+        "queryField": "palmeiras",
+        "mapField": "ft"
+      }
+    },
+    "blocks": [
+      "search-result-layout.desktop",
+      "search-result-layout.mobile",
+      "search-not-found-layout"
+    ]
+  }
+}

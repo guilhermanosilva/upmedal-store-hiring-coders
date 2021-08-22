@@ -1,0 +1,26 @@
+// Arquivo similar ao search-result.jsonc
+{
+  "flex-layout.row#home-product-corinthias": {
+    "children": ["search-result-layout.customQuery#corinthias"],
+    "props": {
+      "blockClass": "container-products-home"
+    }
+  },
+
+  "search-result-layout.customQuery#corinthias": {
+    "props": {
+      "querySchema": {
+        "orderByField": "OrderByReleaseDateDESC",
+        "hideUnavailableItems": true,
+        "maxItemsPerPage": 8,
+        "queryField": "corinthias",
+        "mapField": "ft"
+      }
+    },
+    "blocks": [
+      "search-result-layout.desktop",
+      "search-result-layout.mobile",
+      "search-not-found-layout"
+    ]
+  }
+}

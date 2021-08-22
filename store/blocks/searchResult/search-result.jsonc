@@ -1,0 +1,79 @@
+{
+  "flex-layout.row#home-product": {
+    "children": ["search-result-layout.customQuery#home"],
+    "props": {
+      "blockClass": "container-products-home"
+    }
+  },
+
+  /*
+  Busca feita com um filtro específico dos produtos da loja UpMedal.
+  */
+  "search-result-layout.customQuery#home": {
+    "props": {
+      "querySchema": {
+        "orderByField": "OrderByReleaseDateDESC", // ordena por data de lançamento
+        "hideUnavailableItems": true, // esconde items não disponíveis
+        "maxItemsPerPage": 8,
+        "queryField": "UpMedal",
+        "mapField": "ft"
+      }
+    },
+    "blocks": [
+      "search-result-layout.desktop",
+      "search-result-layout.mobile",
+      "search-not-found-layout"
+    ]
+  },
+
+  // layout mobile é padrão para todas as pesquisas
+  "search-result-layout.mobile": {
+    "children": ["flex-layout.row#home-product-results"],
+    "props": {
+      "pagination": "show-more",
+      "preventRouteChange": true,
+      "defaultGalleryLayout": "grid"
+    }
+  },
+
+  // define um layout para a home em telas grandes
+  "search-result-layout.desktop": {
+    "children": ["flex-layout.row#home-product-results"]
+  },
+
+  // cria uma linha como container da grade de produtos
+  "flex-layout.row#home-product-results": {
+    "children": ["flex-layout.col#home-product-search"]
+  },
+
+  // cria uma coluna para exibir a galeria e logo a baixo um botão para mostrar mais
+  "flex-layout.col#home-product-search": {
+    "children": ["search-content#home-product-home", "search-fetch-more"]
+  },
+
+  // definição do que será exibito no retorno do customQuery
+  "search-content#home-product-home": {
+    "blocks": ["gallery#home-product", "not-found"]
+  },
+
+  // configurações da galeria
+  "gallery#home-product": {
+    "props": {
+      "layouts": [
+        {
+          "name": "homeproduct",
+          "component": "HomeProductSummary",
+          "itemsPerRow": {
+            "desktop": 2, // mostra dois proudos por linha em telas grandes
+            "mobile": 1 // mostra um produto por linha em telas pequenas
+          }
+        }
+      ],
+
+      /*
+      utiliza o product-summary.shelf padrão definido no arquivo default.jsonc
+      */
+      "HomeProductSummary": "product-summary.shelf"
+    }
+  }
+}
